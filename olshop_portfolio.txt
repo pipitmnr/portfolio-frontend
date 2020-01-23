@@ -1,4 +1,0 @@
-api distance.to:
-project: default-application_4107793
-host: distanceto.p.rapidapi.com
-key: ca679a5792mshbdb7f62760c3e75p10cb70jsnb33663595d3b
