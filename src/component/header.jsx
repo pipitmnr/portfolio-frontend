@@ -18,7 +18,8 @@ class Header extends Component{
         store.setState({isLogin: false});
         store.setState({adminIsLogin: false});
         localStorage.setItem("token", "");
-        localStorage.setItem("isLogin", false);
+        localStorage.setItem("isLogin", "false");
+        localStorage.setItem("adminIsLogin", "false");
     };
     
     axiosProduct = async(event) => {
