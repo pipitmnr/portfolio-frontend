@@ -82,7 +82,7 @@ class AdminUser extends React.Component{
                     <div className="isi-header"></div>
                     <div className="container">
                         <div className="row my-5">
-                            <h3>Dashboard ini berubah</h3>
+                            <h3>Dashboard beranda</h3>
                         </div>
                         <div className="row align-items-center">
                             <div className="col-md-12">
