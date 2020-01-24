@@ -35,7 +35,7 @@ class Login extends React.Component{
                         localStorage.setItem("token", response.data.token);
                         localStorage.setItem("adminIsLogin", true);
                         alert("Admin Berhasil Masuk");
-                        self.props.history.push("/admin/");
+                        self.props.history.push("/admin-user/");
                     }
                     else{
                         store.setState({token: response.data.token});

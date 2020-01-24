@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import axios from 'axios';
 
-class Header extends Component{
+class Header extends Component{    
     logout = async() => {
         store.setState({username: ""});
         store.setState({password: ""});
@@ -18,8 +18,8 @@ class Header extends Component{
         store.setState({isLogin: false});
         store.setState({adminIsLogin: false});
         localStorage.setItem("token", "");
-        localStorage.setItem("isLogin", "false");
-        localStorage.setItem("adminIsLogin", "false");
+        localStorage.setItem("isLogin", false);
+        localStorage.setItem("adminIsLogin", false);
     };
     
     axiosProduct = async(event) => {
@@ -67,7 +67,7 @@ class Header extends Component{
                                                 </Link>
                                             </li>
                                             <li className="list-inline-item px-3">
-                                                <Link to={`/`}>
+                                                <Link to={`/admin-cart`}>
                                                     Cart
                                                 </Link>
                                             </li>

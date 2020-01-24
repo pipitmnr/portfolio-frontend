@@ -11,6 +11,7 @@ import Checkout from '../pages/checkout';
 import AdminUser from '../pages/admin-user';
 import AdminCategory from '../pages/admin-category';
 import AdminProduct from '../pages/admin-product';
+import AdminCart from '../pages/admin-cart';
 import formProduct from '../pages/form/form-product';
 
 const MainRoute = () => {
@@ -29,6 +30,7 @@ const MainRoute = () => {
                 <Route exact path="/admin-user/" component={AdminUser}/>
                 <Route exact path="/admin-category/" component={AdminCategory}/>
                 <Route exact path="/admin-product/" component={AdminProduct}/>
+                <Route exact path="/admin-cart/" component={AdminCart}/>
             </Switch>
         </BrowserRouter>
     )
