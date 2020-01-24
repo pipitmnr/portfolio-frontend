@@ -24,7 +24,8 @@ script:
 #- cp travis.env .env
 #- cat .env
 ###- mkdir logs
-- CI = false npm run build
+- unset CI
+- npm run build
 # - npm run test
 # after_success:
 # - npm run coverage
