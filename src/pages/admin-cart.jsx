@@ -13,7 +13,7 @@ class AdminCart extends React.Component{
         cart:{},
         "0": "Pesanan belum dicheckout.",
         "1": "Pesanan telah dicheckout.",
-        "2": "Pesanan telah dikonfirmasi.",
+        "2": "Pesanan dikonfirmasi toko. Menunggu pembayaran.",
         "3": "Pembayaran telah dilakukan.",
         "4": "Pembayaran dikonfirmasi toko. Barang segera dipersiapkan.",
         "5": "Barang telah dikirim.",
@@ -46,26 +46,80 @@ class AdminCart extends React.Component{
                 self.setState({isLoading: false});
             });
     };
-    deleteCart = async(event) => {
-        const self=this;
+    konfirmasi = async(event) => {
+        const self = this;
+        const data = {
+            "status": "2",
+        };
         const req = {
-            method : "delete",
-            url : `https://hijub.my.id/cart/${event}`,
+            method : "put",
+            url : `https://hijub.my.id/cart/admin/${event}`,
             headers : {
                 Authorization: "Bearer " + localStorage.getItem('token'),
+                "Content-Type": "application/json"
             },
-        }  
+            data : data
+        };
         await axios(req)
-            .then(function (response) {
-                self.setState({isLoading: false});
-                self.props.history.push(`/admin-cart`);
-                alert("Berhasil Hapus Keranjang");
+            .then(function(response){
+                self.props.history.push("/admin-cart");
+                alert("Berhasil Konfirmasi Pesanan");
             })
-            .catch(function (error) {
-                self.setState({isLoading: false});
-                self.props.history.push(`/admin-cart`);
-                alert("Gagal Hapus Keranjang");
+            .catch(function(error){
+                alert("Gagal Konfirmasi Pesanan");
+                self.props.history.push("/admin-cart");
             });
+            
+    };
+    konfirmasiPembayaran = async(event) => {
+        const self = this;
+        const data = {
+            "status": "4",
+        };
+        const req = {
+            method : "put",
+            url : `https://hijub.my.id/cart/admin/${event}`,
+            headers : {
+                Authorization: "Bearer " + localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            data : data
+        };
+        await axios(req)
+            .then(function(response){
+                alert("Berhasil Konfirmasi Pembayaran");
+                self.props.history.push("/admin-cart");
+            })
+            .catch(function(error){
+                alert("Maaf Terjadi Kesalahan");
+                self.props.history.push("/admin-cart");
+            });
+            
+    };
+    konfirmasiPengiriman = async(event) => {
+        const self = this;
+        const data = {
+            "status": "5",
+        };
+        const req = {
+            method : "put",
+            url : `https://hijub.my.id/cart/admin/${event}`,
+            headers : {
+                Authorization: "Bearer " + localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            data : data
+        };
+        await axios(req)
+            .then(function(response){
+                alert("Berhasil Konfirmasi Pengiriman");
+                self.props.history.push("/admin-cart");
+            })
+            .catch(function(error){
+                alert("Maaf Terjadi Kesalahan");
+                self.props.history.push("/admin-cart");
+            });
+            
     };
     componentDidMount = async() => {
         this.getListCart();
@@ -81,11 +135,36 @@ class AdminCart extends React.Component{
                     <td>{item.alamat_lengkap}</td>
                     <td>{item.ongkir}</td>
                     <td>{item.total_harga}</td>
-                    <td>{item.status} : {this.state[item.status]}</td>
+                    <td>{item.status}. {this.state[item.status]}</td>
                     <td>
                         <ul className="list-unstyled list-inline my-0">
-                            <li className="admin-action-trash px-2 list-inline-item">
-                                <Link to={`/`} onClick={(event) => this.deleteCart(`${item.id}`)}><i className="fa fa-trash"></i></Link>
+                            <li>
+                                {item.status=="1" ?
+                                    <Link to={`/`}>
+                                        <button className="btn-success" onClick={(event) => this.konfirmasi(`${item.id}`)}>
+                                            Konfirmasi
+                                        </button>
+                                    </Link>
+                                :
+                                    item.status=="2" ?
+                                        <div>Menunggu pembayaran . . .</div>
+                                    :
+                                        item.status=="3" ?
+                                            <Link to={`/`}>
+                                                <button className="btn-success" onClick={(event) => this.konfirmasiPembayaran(`${item.id}`)}>
+                                                    Konfirmasi Pembayaran
+                                                </button>
+                                            </Link>
+                                        :
+                                            item.status=="4" ?
+                                                <Link to={`/`}>
+                                                    <button className="btn-success" onClick={(event) => this.konfirmasiPengiriman(`${item.id}`)}>
+                                                        Konfirmasi Pengiriman
+                                                    </button>
+                                                </Link>
+                                            :
+                                                <div>Transaksi selesai</div>
+                                }
                             </li>
                         </ul>
                     </td>

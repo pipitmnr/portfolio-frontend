@@ -36,31 +36,6 @@ class CheckoutData extends Component{
             });
             
     };
-    konfirmasi = async(event) => {
-        const self = this;
-        const data = {
-            "status": "2",
-        };
-        const req = {
-            method : "put",
-            url : `https://hijub.my.id/cart/admin/${event}`,
-            headers : {
-                Authorization: "Bearer " + localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            data : data
-        };
-        await axios(req)
-            .then(function(response){
-                self.props.history.push("/checkout");
-                alert("Berhasil Konfirmasi Pesanan");
-            })
-            .catch(function(error){
-                alert("Gagal Konfirmasi Pesanan");
-                self.props.history.push("/checkout");
-            });
-            
-    };
     pembayaran = async(event) => {
         const self = this;
         const data = {
@@ -78,56 +53,6 @@ class CheckoutData extends Component{
         await axios(req)
             .then(function(response){
                 alert("Terimakasih. Toko Akan Konfirmasi Pembayaran Anda");
-                self.props.history.push("/checkout");
-            })
-            .catch(function(error){
-                alert("Maaf Terjadi Kesalahan");
-                self.props.history.push("/checkout");
-            });
-            
-    };
-    konfirmasiPembayaran = async(event) => {
-        const self = this;
-        const data = {
-            "status": "4",
-        };
-        const req = {
-            method : "put",
-            url : `https://hijub.my.id/cart/admin/${event}`,
-            headers : {
-                Authorization: "Bearer " + localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            data : data
-        };
-        await axios(req)
-            .then(function(response){
-                alert("Berhasil Konfirmasi Pembayaran");
-                self.props.history.push("/checkout");
-            })
-            .catch(function(error){
-                alert("Maaf Terjadi Kesalahan");
-                self.props.history.push("/checkout");
-            });
-            
-    };
-    konfirmasiPengiriman = async(event) => {
-        const self = this;
-        const data = {
-            "status": "5",
-        };
-        const req = {
-            method : "put",
-            url : `https://hijub.my.id/cart/admin/${event}`,
-            headers : {
-                Authorization: "Bearer " + localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            data : data
-        };
-        await axios(req)
-            .then(function(response){
-                alert("Berhasil Konfirmasi Pengiriman");
                 self.props.history.push("/checkout");
             })
             .catch(function(error){
@@ -155,31 +80,7 @@ class CheckoutData extends Component{
                         <div className="col-md-2"></div>
                         <div className="col-md-2">
                             {this.props.adminIsLogin ? 
-                                item.status=="1" ?
-                                    <Link to={`/`}>
-                                        <button className="btn-success" onClick={(event) => this.konfirmasi(`${item.id}`)}>
-                                            Konfirmasi
-                                        </button>
-                                    </Link>
-                                :
-                                    item.status=="2" ?
-                                        <div>Menunggu Pembayaran</div>
-                                    :
-                                        item.status=="3" ?
-                                            <Link to={`/`}>
-                                                <button className="btn-success" onClick={(event) => this.konfirmasiPembayaran(`${item.id}`)}>
-                                                    Konfirmasi Pembayaran
-                                                </button>
-                                            </Link>
-                                        :
-                                            item.status=="4" ?
-                                                <Link to={`/`}>
-                                                    <button className="btn-success" onClick={(event) => this.konfirmasiPengiriman(`${item.id}`)}>
-                                                        Konfirmasi Pengiriman
-                                                    </button>
-                                                </Link>
-                                            :
-                                                <div>Transaksi selesai</div>
+                                <div></div>
                             :
                                 item.status<="2" ?
                                     <React.Fragment>
