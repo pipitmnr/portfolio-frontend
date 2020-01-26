@@ -93,9 +93,6 @@ class AdminUser extends React.Component{
                             <div className="col-md-12">
                                 <div className="row">
                                     <div className="page-item ml-auto mr-3 my-3">
-                                        <Link className="page-link tambah-data">
-                                            Tambah Data
-                                        </Link>
                                     </div>
                                 </div>                                
                             </div>

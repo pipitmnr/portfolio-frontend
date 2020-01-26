@@ -88,12 +88,6 @@ class Category extends React.Component{
                                         
                                     </div>
                                 }
-                                {
-                                    localStorage.getItem('adminIsLogin')=="true"==true?
-                                    <button type="button" className="btn button-zooya"><Link to="/form-add-product">+ Hijab</Link></button>
-                                    :
-                                    <div></div>
-                                }
                             </div>
                         </div>
                         <div className="row align-items-center home-category">

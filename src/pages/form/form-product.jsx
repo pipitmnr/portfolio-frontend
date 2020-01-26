@@ -195,9 +195,9 @@ class formProduct extends React.Component{
                                             }
                                         </div>
                                         {this.state.id_product>0 ?
-                                            <button type="submit" className="btn button-zooya-invers" onClick={() => this.putProduct()}><Link to="/form-add-product">Simpan</Link></button>
+                                            <button type="submit" className="btn button-zooya-invers" onClick={() => this.putProduct()}><Link to="/form-product">Simpan</Link></button>
                                         :
-                                            <button type="submit" className="btn button-zooya-invers" onClick={() => this.postProduct()}><Link to="/form-add-product">Tambah</Link></button>
+                                            <button type="submit" className="btn button-zooya-invers" onClick={() => this.postProduct()}><Link to="/form-product">Tambah</Link></button>
                                         }
                                     </form>
                                 </div>

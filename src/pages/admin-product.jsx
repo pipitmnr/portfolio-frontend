@@ -53,12 +53,12 @@ class AdminProduct extends React.Component{
             .then(function (response) {
                 self.setState({isLoading: false});
                 self.props.history.push(`/admin-product`);
-                alert("Berhasil Hapus Hijab");
+                alert("Berhasil Hapus Data");
             })
             .catch(function (error) {
                 self.setState({isLoading: false});
                 self.props.history.push(`/admin-product`);
-                alert("Gagal Hapus Hijab");
+                alert("Gagal Hapus Data");
             });
     };
     componentDidMount = async() => {
