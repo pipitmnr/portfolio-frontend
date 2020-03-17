@@ -97,7 +97,7 @@ class Header extends Component{
                         <div className="col-md-3">
                             <div className="header-auth">
                                 <ul className="list-unstyled list-inline mb-0">
-                                    {(localStorage.getItem('isLogin')=="true") | (this.props.isLogin==true) ?
+                                    {(localStorage.getItem('isLogin')=="true") | (localStorage.getItem('adminIsLogin')=="true") | ((this.props.isLogin==true) | (this.props.adminIsLogin==true)) ?
                                         (<React.Fragment>
                                             <li className="list-inline-item px-2">
                                                 <Link to={`/cart`}><i className="fa fa-shopping-cart"></i></Link>
@@ -108,19 +108,16 @@ class Header extends Component{
                                             <li className="list-inline-item px-2">
                                                 <Link to="/checkout"> Pesanan</Link>
                                             </li>
-                                            
-                                        </React.Fragment>)
-                                    :
-                                        <div></div>
-                                    }
-                                        (localStorage.getItem('isLogin')=="true") | (localStorage.getItem('adminIsLogin')=="true") | ((this.props.isLogin==true) | (this.props.adminIsLogin==true)) ?
                                             <li className="list-inline-item px-2" onClick={() => this.logout()}>
                                                 <Link to="/"> Keluar</Link>
                                             </li>
-                                        :                                        
-                                            (<li className="list-inline-item px-2">
-                                                <Link to={`/login`}>Masuk</Link>
-                                            </li>)
+                                            
+                                        </React.Fragment>)
+                                    :                                     
+                                        (<li className="list-inline-item px-2">
+                                            <Link to={`/login`}>Masuk</Link>
+                                        </li>)
+                                    }
                                 </ul>
                             </div>
                         </div>
