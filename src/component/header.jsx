@@ -111,6 +111,8 @@ class Header extends Component{
                                             
                                         </React.Fragment>)
                                     :
+                                        <div></div>
+                                    }
                                         (localStorage.getItem('isLogin')=="true") | (localStorage.getItem('adminIsLogin')=="true") | ((this.props.isLogin==true) | (this.props.adminIsLogin==true)) ?
                                             <li className="list-inline-item px-2" onClick={() => this.logout()}>
                                                 <Link to="/"> Keluar</Link>
@@ -119,7 +121,6 @@ class Header extends Component{
                                             (<li className="list-inline-item px-2">
                                                 <Link to={`/login`}>Masuk</Link>
                                             </li>)
-                                    }
                                 </ul>
                             </div>
                         </div>
